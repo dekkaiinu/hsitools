@@ -1,18 +1,17 @@
 import numpy as np
-import matplotlib.pyplot as plt
-
 
 
 def hs_to_rgb(hsi, lower_limit_wavelength=350, upper_limit_wavelength=1100, color_matching_function = None):
     '''
-    
+    Args:
+
     '''
 
     hsi = hsi.astype(np.float32)
     height, width = hsi.shape[0], hsi.shape[1]
 
     if not color_matching_function:
-        color_matching_function = cfe_color_function()
+        color_matching_function = get_cfe_color_function()
 
     wave_length = np.arange(lower_limit_wavelength, upper_limit_wavelength + 1, 5)
 
@@ -23,31 +22,21 @@ def hs_to_rgb(hsi, lower_limit_wavelength=350, upper_limit_wavelength=1100, colo
     img_xyz = np.zeros((height, width, 3))
     img_rgb = np.zeros((height, width, 3))
 
-    M = np.array(
-        [
-            [0.41844, -0.15866, -0.08283],
-            [-0.09117, 0.25242, 0.01570],
-            [0.00092, -0.00255, 0.17858],
-        ]
-    )
+    M = np.array([[0.41844, -0.15866, -0.08283],
+                  [-0.09117, 0.25242, 0.01570],
+                  [0.00092, -0.00255, 0.17858]])
+    
+    intensity = hsi_390_830.reshape(-1, 89)
+    
+    xyz = np.dot(intensity, color_matching_function[:, 1:])
 
-    for h in range(height):
-        for w in range(width):
-            intensity = hsi_390_830[h, w, :]
-            # 各ピクセルの(x, y, z)の値を計算
-            x, y, z = (
-                np.dot(intensity, color_matching_function[:, 1]),
-                np.dot(intensity, color_matching_function[:, 2]),
-                np.dot(intensity, color_matching_function[:, 3]),
-            )
-            img_xyz[h, w] = np.array([x, y, z])
-            # RGB表色系に変換
-            img_rgb[h, w] = M @ img_xyz[h, w]
-    #print(img_rgb)
+    img_xyz = xyz.reshape(height, width, 3)
+
+    img_rgb = np.dot(img_xyz, M.T)
 
     return img_rgb
 
-def cfe_color_function():
+def get_cfe_color_function():
     color_matching_function = np.array((390,2.952420E-03,4.076779E-04,1.318752E-02,
                                         395,7.641137E-03,1.078166E-03,3.424588E-02,
                                         400,1.879338E-02,2.589775E-03,8.508254E-02,
