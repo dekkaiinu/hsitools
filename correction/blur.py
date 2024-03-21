@@ -2,6 +2,16 @@ import numpy as np
 import cv2
 
 def hsi_blur(hsi: np.array, kernel_size: int=5):
+    '''
+    Apply blurring to an HSI image.
+
+    Parameters:
+        hsi (np.array): Input HSI image.
+        kernel_size (int): Size of the Gaussian kernel. Default is 5.
+
+    Returns:
+        np.array: Smoothed HSI image.
+    '''
     blur_func = cv2.blur
     smooth_hsi = integration_smooth_images_for_blur(hsi, blur_func, kernel_size)
 
@@ -9,6 +19,16 @@ def hsi_blur(hsi: np.array, kernel_size: int=5):
 
 
 def hsi_gaussian_blur(hsi: np.array, kernel_size: int=5):
+    '''
+    Apply Gaussian blurring to an HSI image.
+
+    Parameters:
+        hsi (np.array): Input HSI image.
+        kernel_size (int): Size of the Gaussian kernel. Default is 5.
+
+    Returns:
+        np.array: Smoothed HSI image.
+    '''
     blur_func = cv2.GaussianBlur
     smooth_hsi = integration_smooth_images_for_blur(hsi, blur_func, kernel_size)
     return smooth_hsi
