@@ -40,7 +40,23 @@ def hs_to_rgb(hsi: np.array, lower_limit_wavelength: int=350, upper_limit_wavele
 
     img_rgb = np.dot(img_xyz, M.T)
 
+    img_rgb = ((img_rgb - np.min(img_rgb)) / (np.max(img_rgb) - np.min(img_rgb)) * 255).astype(np.uint8)
+    img_rgb = gamma_correction(img_rgb, max_value=255)
+
     return img_rgb
+
+def gamma_correction(img: np.array, gamma: float=2.2, max_value: int=65535, base_max_value: int=255):
+    
+    img = img.astype(np.float32) / max_value
+    img = img ** (1.0 / gamma)
+    img = img * base_max_value
+    # img = img * max_pixel
+    if base_max_value == 255:
+        img = img.astype(np.uint8)
+    elif base_max_value == 65535:
+        img = img.astype(np.uint16)
+
+    return img
 
 def get_cfe_color_function():
     color_matching_function = np.array((390,2.952420E-03,4.076779E-04,1.318752E-02,
