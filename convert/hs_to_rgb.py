@@ -41,7 +41,6 @@ def hs_to_rgb(hsi: np.array, lower_limit_wavelength: int=350, upper_limit_wavele
     img_rgb = np.dot(img_xyz, M.T)
 
     img_rgb = ((img_rgb - np.min(img_rgb)) / (np.max(img_rgb) - np.min(img_rgb)) * 255).astype(np.uint8)
-    img_rgb = gamma_correction(img_rgb, max_value=255)
 
     return img_rgb
 
