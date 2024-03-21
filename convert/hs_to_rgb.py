@@ -23,7 +23,7 @@ def hs_to_rgb(hsi: np.array, lower_limit_wavelength: int=350, upper_limit_wavele
 
     idx_390, idx_830 = int(np.where(wave_length == 390)[0]), int(np.where(wave_length == 830)[0])
 
-    hsi_390_830 = hsi[:, :, idx_390 : idx_830 + 1]  # 390 ~ 830 nmの強度
+    hsi_390_830 = hsi[:, :, idx_390 : idx_830 + 1]
 
     img_xyz = np.zeros((height, width, 3))
     img_rgb = np.zeros((height, width, 3))
@@ -49,7 +49,6 @@ def gamma_correction(img: np.array, gamma: float=2.2, max_value: int=65535, base
     img = img.astype(np.float32) / max_value
     img = img ** (1.0 / gamma)
     img = img * base_max_value
-    # img = img * max_pixel
     if base_max_value == 255:
         img = img.astype(np.uint8)
     elif base_max_value == 65535:

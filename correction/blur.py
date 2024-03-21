@@ -47,4 +47,5 @@ def integration_smooth_images_for_blur(hsi, blur_func, kernel_size):
         gizi_rgb = hsi[:,:,band:band+3]
         smooth_gizi_rgb = blur_func(gizi_rgb, (kernel_size, kernel_size))
         smooth_hsi = np.dstack([smooth_hsi, smooth_gizi_rgb])
+        
     return smooth_hsi

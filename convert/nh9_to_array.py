@@ -16,4 +16,5 @@ def nh9_to_array(file_path: str, height=1080, width=2048, spectral_dimension=151
         hs_array = np.fromfile(f, np.uint16, -1)
         hsi_np_array = np.reshape(hs_array, (height, spectral_dimension, width))
         hsi_np_array = np.transpose(hsi_np_array, (0, 2, 1))
+        
     return hsi_np_array
