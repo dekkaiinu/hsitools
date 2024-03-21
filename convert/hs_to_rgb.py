@@ -1,10 +1,16 @@
 import numpy as np
 
 
-def hs_to_rgb(hsi, lower_limit_wavelength=350, upper_limit_wavelength=1100, color_matching_function = None):
+def hs_to_rgb(hsi: np.array, lower_limit_wavelength: int=350, upper_limit_wavelength: int=1100, color_matching_function: np.array = None):
     '''
     Args:
+        hsi (np.array): hyperspectral image (height, width, band)
+        lower_limit_wavelength (int): lower limit wavelength of hsi
+        upper_limit_wavelength (int): upper_limit_wavelength of hsi
+        color_matching_function (np.array): color matching function
 
+    Returns:
+        np.array: NumPy array of RGB images converted from hyperspectral images
     '''
 
     hsi = hsi.astype(np.float32)
