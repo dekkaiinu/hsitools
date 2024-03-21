@@ -3,7 +3,7 @@ import numpy as np
 
 def nh9_to_array(file_path: str, height=1080, width=2048, spectral_dimension=151) -> np.array:
     '''
-    Args:
+    Parameters:
         file_path (str): Path to the hyperspectral image file.
         height (int): Height of the image.
         width (int): Width of the image.
