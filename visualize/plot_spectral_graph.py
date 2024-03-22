@@ -19,8 +19,12 @@ def plot_spectral_graph(hs_pixels: np.array, ax: plt.Axes, plot_color: Union[str
     if plot_std:
         std = np.std(hs_pixels, axis=0)
         ax.fill_between(np.arange(0, len(avg), 1), (avg + std), (avg - std), color=plot_color, alpha=0.3)
-    ax.plot(avg, color=plot_color, label=label)
-    ax.legend()
+    
+    if label:
+        ax.plot(avg, color=plot_color, label=label)
+        ax.legend()
+    else:
+        ax.plot(avg, color=plot_color)
 
     return ax
 
@@ -50,4 +54,23 @@ def plot_spectrals_graph(hs_pixels_list: list, ax: plt.Axes, plot_color_list: li
     else:
         for hs_pixels, plot_color, label in zip(hs_pixels_list, plot_color_list, label_list):
             ax = plot_spectral_graph(hs_pixels, ax, plot_color=plot_color, label=label, plot_std=plot_std)
+    return ax
+
+def set_grath_spectralscale(ax, marks_number: int=8, spectral_start_end: np.array=np.array((350, 1150)), band_num: int=151):    
+    spectral_range = spectral_start_end[1] - spectral_start_end[0]
+    spectral_interval = int(spectral_range / marks_number)
+    band_interval = int(band_num / marks_number)
+
+    new_labels = []
+    new_values = []
+    wavelength = spectral_start_end[0]
+
+    for i in range(marks_number + 1):
+        new_labels.append(wavelength)
+        new_values.append(i * band_interval)
+        wavelength = wavelength + spectral_interval
+
+    ax.set_xticks(new_values)
+    ax.set_xticklabels(new_labels)
+
     return ax

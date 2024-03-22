@@ -1,1 +1,1 @@
-from .plot_spectral_graph import plot_spectral_graph, plot_spectrals_graph
+from .plot_spectral_graph import plot_spectral_graph, plot_spectrals_graph, set_grath_spectralscale
