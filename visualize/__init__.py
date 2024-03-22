@@ -1,1 +1,1 @@
-from .plot_spectral_graph import plot_spectral_graph
+from .plot_spectral_graph import plot_spectral_graph, plot_spectrals_graph
