@@ -15,14 +15,15 @@ def annotate_hspixels(hs_pixels: np.array, label: int):
 
 def annotate_hspixels_list(hs_pixels_list, label_list):
     '''
-    Annotate the list of hyperspectral pixels with their respective specified labels
+    Annotate lists of hyperspectral pixels with corresponding labels.
 
     Parameters:
-        hs_pixels (list): Input hyperspectral pixels. shape=(number of data, band)
-        label (list): Annotation label
+        hs_pixels_list (list of np.array): List of input hyperspectral pixel arrays.
+            Each array should have shape (number of data, band).
+        label_list (list of int): List of annotation labels corresponding to each set of pixels.
 
     Returns:
-        np.array: Labels corresponding to pixels
+        list of np.array: List of labels corresponding to each set of pixels.
     '''
     labels_list = []
     for hs_pixels, label in zip(hs_pixels_list, label_list):
