@@ -16,7 +16,7 @@ INSTALL_REQUIRES = [
     'opencv-python>=4.9.0.80'
 ]
 
-with open('README.rst', 'r') as fp:
+with open('README.md', 'r') as fp:
     readme = fp.read()
 
 setup(name=NAME,
