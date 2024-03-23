@@ -5,7 +5,7 @@ DESCRIPTION = 'This library is a collection of fundamental functionalities for h
 NAME = 'hsitools'
 AUTHOR = 'dekkaiinu'
 URL = 'https://github.com/dekkaiinu/hsitools'
-LICENSE = 'MIT '
+LICENSE = 'MIT'
 DOWNLOAD_URL = 'https://github.com/dekkaiinu/hsitools'
 VERSION = hsitools.__version__
 PYTHON_REQUIRES = '>=3.8.18'
