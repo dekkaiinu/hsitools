@@ -1,6 +1,6 @@
-from .correction import correction
-from .machine_learning import machine_learning
-from .preprocessing import preprocessing
-from .visualize import visualize
+from .correction import __init__
+from .machine_learning import __init__
+from .preprocessing import __init__
+from .visualize import __init__
 
 __version__ = '0.0.1'
