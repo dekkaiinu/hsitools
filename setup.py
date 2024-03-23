@@ -1,5 +1,4 @@
-from setuptools import setup
-import hsitools
+from setuptools import setup, find_packages
 
 DESCRIPTION = 'This library is a collection of fundamental functionalities for hyperspectral image analysis'
 NAME = 'hsitools'
@@ -7,7 +6,7 @@ AUTHOR = 'dekkaiinu'
 URL = 'https://github.com/dekkaiinu/hsitools'
 LICENSE = 'MIT'
 DOWNLOAD_URL = 'https://github.com/dekkaiinu/hsitools'
-VERSION = hsitools.__version__
+VERSION = '0.0.1'
 PYTHON_REQUIRES = '>=3.8.18'
 
 INSTALL_REQUIRES = [
@@ -28,5 +27,5 @@ setup(name=NAME,
       download_url=DOWNLOAD_URL,
       python_requires=PYTHON_REQUIRES,
       install_requires=INSTALL_REQUIRES,
-      packages=['hsitools'],
+      packages=find_packages(),
     )
