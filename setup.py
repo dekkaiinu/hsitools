@@ -14,7 +14,6 @@ INSTALL_REQUIRES = [
     'matplotlib>=3.7.5',
     'numpy>=1.24.4',
     'opencv-python>=4.9.0.80'
-
 ]
 
 with open('README.rst', 'r') as fp:
