@@ -1,2 +1,2 @@
-from supervised import __init__
-from unsupervised import __init__
+from .supervised import __init__
+from .unsupervised import __init__
