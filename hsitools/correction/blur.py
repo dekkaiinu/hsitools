@@ -66,16 +66,3 @@ def integration_smooth_images_for_blur(hsi, blur_func, kernel_size, sigmaX=None)
         smooth_hsi = np.dstack([smooth_hsi, smooth_gizi_rgb])
         
     return smooth_hsi
-
-from hsitools.convert import nh9_to_array
-
-
-hsi_path = '../../sample/sample_hsi.nh9'
-
-hsi_array = nh9_to_array(hsi_path)
-
-hsi_array = hsi_array[:, :, :-2]
-print(hsi_array.shape)
-
-hsi_array = hsi_gaussian_blur(hsi_array)
-print(hsi_array.shape)
