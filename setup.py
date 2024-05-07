@@ -6,7 +6,7 @@ AUTHOR = 'dekkaiinu'
 URL = 'https://github.com/dekkaiinu/hsitools'
 LICENSE = 'MIT'
 DOWNLOAD_URL = 'https://github.com/dekkaiinu/hsitools'
-VERSION = '0.1.3'
+VERSION = '0.1.4'
 PYTHON_REQUIRES = '>=3.8.18'
 
 INSTALL_REQUIRES = [
