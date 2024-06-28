@@ -1,7 +1,7 @@
 import os
 import numpy as np
 
-def hs2rgb(hsi: np.array, lower_limit_wavelength: int=350, upper_limit_wavelength: int=1100, spectrum_stepsize: int=5, color_matching_function: np.array = None):
+def hs2rgb(hsi: np.array, lower_limit_wavelength: int=350, upper_limit_wavelength: int=1100, spectrum_stepsize: int=5, color_matching_function: np.array = None, gamma = 2.2):
     '''
     Parameters:
         hsi (np.array): hyperspectral image (height, width, band)
@@ -9,6 +9,7 @@ def hs2rgb(hsi: np.array, lower_limit_wavelength: int=350, upper_limit_wavelengt
         upper_limit_wavelength (int): upper_limit_wavelength of hsi
         spectrum_stemsize (int): wavelength range between hsi channels
         color_matching_function (np.array): color matching function
+        gamma (float): if gamma is None, no gamma correction will be applied
 
     Returns:
         np.array: NumPy array of RGB images converted from hyperspectral images
@@ -42,10 +43,11 @@ def hs2rgb(hsi: np.array, lower_limit_wavelength: int=350, upper_limit_wavelengt
 
     img_rgb = np.dot(img_xyz, M.T)
 
-    img_rgb = ((img_rgb - np.min(img_rgb)) / (np.max(img_rgb) - np.min(img_rgb)) * 255).astype(np.uint8)
-
-    img_rgb_gamma  = gamma_correction(img_rgb, gamma=1.9, max_value=255)
-    return img_rgb_gamma
+    if gamma != None:
+        img_rgb_gamma  = gamma_correction(img_rgb, gamma=gamma, max_value=255)
+        return img_rgb_gamma
+    else:
+        return img_rgb
 
 def gamma_correction(img: np.array, gamma: float=2.2, max_value: int=65535, base_max_value: int=255):
     
